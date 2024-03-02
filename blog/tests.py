@@ -1,5 +1,5 @@
 from django.test import SimpleTestCase
-from django.urls import reverse  # new
+from django.urls import reverse
 
 
 class HomepageTests(SimpleTestCase):
@@ -8,9 +8,17 @@ class HomepageTests(SimpleTestCase):
         response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
 
-    def test_url_available_by_name(self):  # new
+    def test_url_available_by_name(self):
         response = self.client.get(reverse("home"))
         self.assertEqual(response.status_code, 200)
+
+    def test_template_name_correct(self):  # new
+        response = self.client.get(reverse("home"))
+        self.assertTemplateUsed(response, "blog/index.html")
+
+    def test_template_content(self):  # new
+        response = self.client.get(reverse("home"))
+        self.assertContains(response, "Index")
 
 
 class AboutpageTests(SimpleTestCase):
@@ -19,6 +27,14 @@ class AboutpageTests(SimpleTestCase):
         response = self.client.get("/about/")
         self.assertEqual(response.status_code, 200)
 
-    def test_url_available_by_name(self):  # new
+    def test_url_available_by_name(self):
         response = self.client.get(reverse("about"))
         self.assertEqual(response.status_code, 200)
+
+    def test_template_name_correct(self):  # new
+        response = self.client.get(reverse("about"))
+        self.assertTemplateUsed(response, "blog/about.html")
+
+    def test_template_content(self):  # new
+        response = self.client.get(reverse("about"))
+        self.assertContains(response, "О нас")
