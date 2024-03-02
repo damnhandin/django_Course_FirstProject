@@ -7,7 +7,8 @@
 <body>
     <div><a href="/">Главная</a> | <a href="/about">О нас</a></div>
     <h1>{% block header %}{% endblock header %}</h1>
-        {% include "blog/banner.html" with tutorial="Учу Django" site="Stepik.org" %}
+    <p>Created by {{ name }}</p>
+        {% include "blog/banner.html" with tutorial="Учу Django" %}
     <div>{% block content %}{% endblock content %}</div>
     <div>MyCorp. 2023. All rights reserved.</div>
 </body>
