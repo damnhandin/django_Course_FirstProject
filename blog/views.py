@@ -2,22 +2,20 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 
-def index(request, name, site):
+def index(request, name):
     return render(request, "blog/index.html", context={
-        "name": name,
-        "site": site
+        "name": name
     })
 
 
-def about(request, name, site):
+def about(request, name):
     # return HttpResponse(f"""
     #     <h2>О пользователе</h2>
     #     <p>Имя: {name}</p>
     #     <p>Возраст: {age}</p>
     # """)
     return render(request, "blog/about.html",
-                  context={"name": name,
-                           "site": site})
+                  context={"name": name})
 
 
 def contact(request):
